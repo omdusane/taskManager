@@ -29,7 +29,9 @@
                 <div class="card text-white bg-secondary mb-3" style="max-width: 540px;">                     
                     <div class="card-header">{{t.title}}</div>
                         <div class="card-body">                            
+                            {% if t.content %}                            
                             <p class="card-text">{{t.content}}</p>
+                            {% endif %}
                             <a href="{% url 'update-task' t.id %}"><button type="submit" class="btn btn-outline-info align-items-center text-white">Update</button></a>
                             <a href="{% url 'delete-task' t.id %}"><button type="submit" class="btn btn-outline-danger align-items-center text-white">Delete</button></a>
                         </div>

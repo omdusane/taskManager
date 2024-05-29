@@ -10,8 +10,8 @@ class Task(models.Model):
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
-class Profile(models.Model):
+# class Profile(models.Model):
 
-    profile_picture = models.ImageField(null=True, blank=True, default='default.jpg')
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+#     profile_picture = models.ImageField(null=True, blank=True, default='default.jpg')
+#     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 

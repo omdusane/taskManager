@@ -1,0 +1,1 @@
+Add default image in this folder and configure the name in models.py
