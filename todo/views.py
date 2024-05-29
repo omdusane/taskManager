@@ -6,7 +6,7 @@ from .forms import  CreateUserForm, LoginForm, CreateTaskForm
 from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
-from .models import Task
+from .models import Task, Profile
 from django.contrib import messages
 
 
@@ -25,7 +25,10 @@ def register(request):
         form = CreateUserForm(request.POST)
 
         if form.is_valid():
+            current_user = form.save(commit=False)
             form.save()
+
+            profile = Profile.objects.create(user=current_user)
             messages.success(request, "Registered Successfully")
             return redirect("login")
         else:
@@ -63,9 +66,9 @@ def logout(request):
 def dashboard(request):
     user = request.user
     current_user = request.user.id
-
+    profile = Profile.objects.get(user=user)
     task = Task.objects.all().filter(user=current_user)
-    return render(request,"user/dashboard.html", {"user": user, 'task': task})
+    return render(request,"user/dashboard.html", {"user": user, 'task': task, "profile": profile})
 
 
 @login_required(login_url='/login')

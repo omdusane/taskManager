@@ -5,7 +5,7 @@ from django.contrib.auth.forms import UserCreationForm, AuthenticationForm
 from django.contrib.auth.models import User
 from django.forms.widgets import PasswordInput, TextInput
 from django import forms
-from .models import Task
+from .models import Task, Profile
 
 
 class CreateUserForm(UserCreationForm):
@@ -25,3 +25,12 @@ class CreateTaskForm(forms.ModelForm):
         model= Task
         fields= ['title', 'content',]
         exclude= ['user',]
+
+class UpdateProfileForm(forms.ModelForm):
+    profile_picture = forms.ImageField(widget=forms.FileInput(attrs={'class':'form-control-file'}))
+
+    class Meta:
+        model= Profile
+        fields= ['profile_picture',]
+        
+        

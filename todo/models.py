@@ -9,3 +9,9 @@ class Task(models.Model):
     date_posted = models.DateTimeField(auto_now_add=True, null=True)
 
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
+class Profile(models.Model):
+
+    profile_picture = models.ImageField(null=True, blank=True, default='default.jpg')
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+
