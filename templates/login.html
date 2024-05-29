@@ -21,15 +21,44 @@
     {% include 'base.html' %}
     
     <div class="container bg-white shadow-md p-5 form-layout">
+        {% for message in messages %}
+            {% if message.level == DEFAULT_MESSAGE_LEVELS.SUCCESS %}
+                
+                <div class="alert alert-success" id="message-timer">
+                    {{message}}
+                </div>
+            {% elif message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
+            <div class="alert alert-error" id="message-timer">
+                {{message}}
+            </div>
+            {% endif %}
+        {% endfor %}
+
         <h2 class="text-center">Login</h2>
         <form action="" method="post">
             {% csrf_token %}
-
+            
             {{form|crispy}}
 
             <button type="submit" class="btn btn-outline-primary">Login</button>
 
         </form>
     </div>
+
+    
+    <script src="{% static 'js/app.js' %}"></script>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"  crossorigin="anonymous"></script>
+
+
+
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+
+    integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+
+    crossorigin="anonymous">
+
+    </script>
 </body>
 </html>

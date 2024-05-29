@@ -7,6 +7,9 @@ from django.contrib.auth.models import auth
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
 from .models import Task
+from django.contrib import messages
+
+
 def home(request):
 
     
@@ -23,8 +26,11 @@ def register(request):
 
         if form.is_valid():
             form.save()
-
+            messages.success(request, "Registered Successfully")
             return redirect("login")
+        else:
+            messages.error(request, "Error While Registering the user, please try again")
+            return redirect("register")
         
     return render(request, 'register.html', {"form":form})
 
