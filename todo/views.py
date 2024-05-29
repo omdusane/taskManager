@@ -55,7 +55,11 @@ def logout(request):
     
 @login_required(login_url='/login')
 def dashboard(request):
-    return render(request,"user/dashboard.html")
+    user = request.user
+    current_user = request.user.id
+
+    task = Task.objects.all().filter(user=current_user)
+    return render(request,"user/dashboard.html", {"user": user, 'task': task})
 
 
 @login_required(login_url='/login')
